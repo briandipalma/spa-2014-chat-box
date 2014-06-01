@@ -17,14 +17,16 @@
 			System.config({
 				map: {
 					"css": "node_modules/systemjs-css/css",
-					"text": "node_modules/systemjs-text/text"
+					"text": "node_modules/systemjs-text/text",
+					"flux-es6": "node_modules/flux-es6/src/index",
+					"emitr": "node_modules/flux-es6/node_modules/emitr/lib/index"
 				}
 			});
 
 			System
 				.import("src/index")
 				.then(function(module) {
-					module.printHello();
+					document.registerElement("spa2014-chat-box", module.ChatBoxElement);
 				})
 				.catch(function(importError) {
 					console.error(importError);
@@ -32,5 +34,6 @@
 		</script>
 	</head>
 	<body>
+		<spa2014-chat-box></spa2014-chat-box>
 	</body>
 </html>
