@@ -2,7 +2,7 @@ import {Store} from 'flux-es6';
 
 export default class extends Store {
     getState() {
-        return "";
+        return '';
     }
 
     handleAction() {

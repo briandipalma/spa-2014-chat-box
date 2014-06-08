@@ -1,2 +1,2 @@
-export {ChatBoxElement} from "./ChatBoxElement";
+export {ChatBoxElement} from './ChatBoxElement';
 export {ChatBoxConstants} from './ChatBoxConstants';
