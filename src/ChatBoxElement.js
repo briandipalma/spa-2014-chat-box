@@ -1,12 +1,15 @@
-import {createStoreAndActions} from "./index";
+import {createStoreAndActions} from 'flux-es6';
+
+import ChatBoxStore from './ChatBoxStore';
+import ChatBoxActions from './ChatBoxActions';
 
 import "../style/index.css!";
 import chatBoxTemplate from "../template/chatBox.text!";
 
 export class ChatBoxElement extends HTMLElement {
-	// Fires when an instance of the RecentMessagesElement is created
+	// Fires when an instance of the ChatBoxElement is created
 	createdCallback() {
-		var [chatBoxStore, chatBoxActions] = createStoreAndActions();
+		var [chatBoxStore, chatBoxActions] = createStoreAndActions(ChatBoxStore, ChatBoxActions);
 
 		this.innerHTML = chatBoxTemplate;
 		this.chatBoxStore = chatBoxStore;
@@ -21,8 +24,7 @@ export class ChatBoxElement extends HTMLElement {
 		sendButton.addEventListener("click", () => this._sendMessage());
 		this._chatBoxTextArea.addEventListener("keydown", (keyboardEvent) => this._chatBoxKeydownListener(keyboardEvent));
 
-		this.chatBoxStore.addChangeListener(this.chatBoxStoreChanged, this);
-		this.chatBoxStoreChanged();
+		this.chatBoxStore.addChangeListenerAndNotify(this.chatBoxStoreChanged, this);
 	}
 
 	// Fires when the instance is removed from the document

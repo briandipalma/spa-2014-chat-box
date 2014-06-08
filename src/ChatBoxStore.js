@@ -5,7 +5,7 @@ export default class extends Store {
         return "";
     }
 
-    handleDispatcherAction(payload) {
+    handleAction() {
         this.emitChange();
 
         return true;
