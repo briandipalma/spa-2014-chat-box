@@ -3,8 +3,7 @@ import {createStoreAndActions} from 'flux-es6';
 import ChatBoxStore from './ChatBoxStore';
 import ChatBoxActions from './ChatBoxActions';
 
-import "../style/index.css!";
-import chatBoxTemplate from "../template/chatBox.text!";
+import chatBoxTemplate from '../template/chatBox.text!';
 
 export class ChatBoxElement extends HTMLElement {
 	// Fires when an instance of the ChatBoxElement is created
@@ -19,19 +18,13 @@ export class ChatBoxElement extends HTMLElement {
 	// Fires when the instance is inserted into the document
 	attachedCallback() {
 		var sendButton = this.querySelector("button");
-		this._chatBoxTextArea = this.querySelector("textarea");
-
 		sendButton.addEventListener("click", () => this._sendMessage());
+
+		this._chatBoxTextArea = this.querySelector("textarea");
 		this._chatBoxTextArea.addEventListener("keydown", (keyboardEvent) => this._chatBoxKeydownListener(keyboardEvent));
 
 		this.chatBoxStore.addChangeListenerAndNotify(this.chatBoxStoreChanged, this);
 	}
-
-	// Fires when the instance is removed from the document
-	detachedCallback() {}
-
-	// Fires when an attribute is added, removed, or updated
-	attributeChangedCallback(attr, oldVal, newVal) {}
 
 	render() {
 		this._chatBoxTextArea.value = this.props;
@@ -47,7 +40,7 @@ export class ChatBoxElement extends HTMLElement {
 	}
 
 	_chatBoxKeydownListener({key: key, keyIdentifier: keyId}) {
-		if (key === "Enter" || keyId === "Enter") {
+		if (key === 'Enter' || keyId === 'Enter') {
 			this._sendMessage();
 		}
 	}
